@@ -16,39 +16,66 @@
     <!-- Не используйте это в production -->
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
   </head>
-  <style>
-      .red {
-        color: #FF0000;
-      }
-  </style>
   <body id="page-top">
     <!-- Services -->
+    <style>
+      .red {
+        color: red;
+      }
+
+      .news {
+        padding: 15px;
+        border: 1px solid #ccc;
+      }
+
+      .comments__item {
+        padding: 5px;
+        border: 1px solid steelblue;
+      }
+    </style>
     <section>
       <div class="container">
           <div id="root"></div>
+
+
           <script type="text/babel">
-            const App = () => {
-              return <p>Component here</p>
+            const News = () => {
+              return <p className="news">iam comp2</p>
             }
 
-            class BigApp extends React.Component {
-              render() {
-                return (
-                  <div>
-                    <h1>IAM Component</h1>
-                    <p className='red'>some text</p>
-                    <App />
-                  </div>
-                )
-              }
+            const Comments = () => {
+              return <input placeholder="Оставьте комментарий" type="text" className="comments__item"></input>
             }
+
+            const App = () => {
+              return (
+                <React.Fragment>
+                    <h1 className="red">App Title</h1>
+                  <News/>
+                  <Comments/>
+                </React.Fragment>
+              )
+            }
+            // class BigApp extends React.Component {
+            //   render() {
+            //     return (
+            //       <div class="news">
+            //         <h2>Title</h2>
+            //         <p className='red'>Desc desc </p>
+            //         <App/>
+            //         <SmallApp/>
+            //       </div>
+            //     )
+            //   }
+            // }
 
             ReactDOM.render(
-              <BigApp />,
+              <App/>,
               document.getElementById('root')
             );
-      
           </script>
+
+
       </div>
     </section>
     <script src="vendor/jquery/jquery.min.js"></script>
