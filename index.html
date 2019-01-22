@@ -38,47 +38,46 @@
           <div id="root"></div>
 
 
-          <script type="text/babel">
-            const News = () => {
-              return <p className="news">iam comp2</p>
-            }
+<script type="text/babel">
+const myNews = [
+  {
+  author: 'Саша Печкин',
+  text: 'В четверг, четвертого числа...'
+  },
+  {
+  author: 'Просто Вася',
+  text: 'Считаю, что $ должен стоить 35 рублей!'
+  }
+];
 
-            const Comments = () => {
-              return <input placeholder="Оставьте комментарий" type="text" className="comments__item"></input>
-            }
+const News = () => {
+  return <p>no news </p>
+}
 
-            const App = () => {
-              return (
-                <React.Fragment>
-                    <h1 className="red">App Title</h1>
-                  <News/>
-                  <Comments/>
-                </React.Fragment>
-              )
-            }
-            // class BigApp extends React.Component {
-            //   render() {
-            //     return (
-            //       <div class="news">
-            //         <h2>Title</h2>
-            //         <p className='red'>Desc desc </p>
-            //         <App/>
-            //         <SmallApp/>
-            //       </div>
-            //     )
-            //   }
-            // }
+const Comments = () => {
+  return <p className='red'>no comments </p>
+}
 
-            ReactDOM.render(
-              <App/>,
-              document.getElementById('root')
-            );
-          </script>
+const App = () => {
+  return(
+    <React.Fragment>
+<News lastnews={myNews} /> {/* добавили свойство data */}
+      <Comments />
+    </React.Fragment>
+  )
+}
+
+ReactDOM.render(
+<App />,
+document.getElementById('root')
+);
+</script>
 
 
       </div>
     </section>
-    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/jquery/jquery.min.js">
+    </script>
   </body>
 
 </html>
