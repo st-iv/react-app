@@ -17,30 +17,6 @@
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
   </head>
   <body id="page-top">
-    <!-- Services -->
-    <style>
-      .red {
-        color: red;
-      }
-
-      .news {
-        padding: 15px;
-        border: 1px solid #ccc;
-      }
-
-      .comments__item {
-        padding: 5px;
-        border: 1px solid steelblue;
-      }
-
-      .news__item {
-        border-bottom: 1px solid red;
-      }
-
-      .none {
-        display: none;
-      }
-    </style>
     <section>
       <div class="container">
           <div id="root"></div>
@@ -75,18 +51,25 @@ const myNews = [
   }
 ];
 
+class Article extends React.Component {
+  render() {
+    const {author, text} = this.props.data
+    return (
+      <div className="article">
+        <p className="news__author">{author}:</p>
+        <p className="news__text">{text}</p>
+      </div>
+    )
+  }
+}
+
 class News extends React.Component {
   render() {
-  const {lastdata} = this.props
+  const {data} = this.props
   let newsTemplate
-  if(lastdata.length) {
-  newsTemplate = lastdata.map(function(item, index){
-      return (
-        <div className="news__item" key={item.id}>
-          <p className="news__author">{item.author}:</p>
-          <p className="news__text">{item.text}:</p>
-        </div>
-      )
+  if(data.length) {
+  newsTemplate = data.map(function(item, index){
+      return <Article key={item.id} data={item}/>
     })
   } else {
     newsTemplate = <p> no news </p>
@@ -96,22 +79,17 @@ class News extends React.Component {
       <div className="news">
         {newsTemplate}
         {
-          lastdata.length ? <strong>все новости: {lastdata.length} </strong> : null
+          data.length ? <strong>все новости: {data.length} </strong> : null
         }
       </div>
     )
   }
 }
 
-const Comments = () => {
-  return <p> no comments</p>
-}
-
 const App = () => {
   return (
     <React.Fragment>
-    <News lastdata={myNews} />
-      <Comments/>
+    <News data={myNews} />
     </React.Fragment>
   )
 }
@@ -125,7 +103,6 @@ ReactDOM.render(
 
       </div>
     </section>
-    <script src="vendor/jquery/jquery.min.js">
     </script>
   </body>
 

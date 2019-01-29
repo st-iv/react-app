@@ -12,3 +12,28 @@
 @import "team.scss";
 @import "contact.scss";
 @import "footer.scss";
+
+.red {
+  color: red;
+}
+
+.news {
+  padding: 15px;
+  border: 1px solid #ccc;
+}
+
+.comments__item {
+  padding: 5px;
+  border: 1px solid steelblue;
+}
+
+.article {
+  display: block;
+  border: 1px solid green;
+  margin-bottom: 15px;
+  padding: 30px;
+}
+
+.none {
+  display: none;
+}
