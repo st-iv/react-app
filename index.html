@@ -23,7 +23,7 @@
 
 
 <script type="text/babel">
-const myNews = [
+const myNews = [  
   {
   id: 1,
   author: 'Саша Печкин',
@@ -64,22 +64,28 @@ class Article extends React.Component {
 }
 
 class News extends React.Component {
-  render() {
-  const {data} = this.props
-  let newsTemplate
-  if(data.length) {
-  newsTemplate = data.map(function(item, index){
-      return <Article key={item.id} data={item}/>
-    })
-  } else {
-    newsTemplate = <p> no news </p>
-  }
+  renderNews = () => {
+    const {data} = this.props
+    let newsTemplate = null
 
+    if(data.length) {
+      newsTemplate = data.map(function(item, index){
+      return <Article key={item.id} data={item} />
+    })
+    } else {
+      newsTemplate = <p> no news </p>
+    }
+
+    return newsTemplate
+  }
+  // 
+  render() {
+    const {data} = this.props
     return (
       <div className="news">
-        {newsTemplate}
+        {this.renderNews()}
         {
-          data.length ? <strong>все новости: {data.length} </strong> : null
+          data.length ? <strong className={'news__count'}>все новости: {data.length} </strong> : null
         }
       </div>
     )
@@ -89,6 +95,7 @@ class News extends React.Component {
 const App = () => {
   return (
     <React.Fragment>
+      <h3>Новости:</h3>
     <News data={myNews} />
     </React.Fragment>
   )
